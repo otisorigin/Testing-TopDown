@@ -29,8 +29,10 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UTestingAttributeSet* AttributeSet;
 
-    UFUNCTION(BlueprintCallable)
-    void InitializeAttributeSet();
+    float GetSpeedFactor() { return SpeedFactor; }
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	float SpeedFactor = 1000.0f;
 	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 

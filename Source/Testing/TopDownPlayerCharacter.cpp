@@ -20,22 +20,17 @@ void ATopDownPlayerCharacter::BeginPlay()
 				AttributeSet->GetMaxSpeedAttribute()
 		).AddUObject(this, &ATopDownPlayerCharacter::MaxSpeedChanged);
     }
-    
-}
-
-void ATopDownPlayerCharacter::InitializeAttributeSet() 
-{
     if (AttributeSet)
     {
-        AttributeSet->SetMaxSpeed(300.0f);
-		GetCharacterMovement()->NavMeshProjectionInterpSpeed = AttributeSet->GetMaxSpeed();
+        AttributeSet->SetMaxSpeed(1000.0f);
+		GetCharacterMovement()->MaxFlySpeed = AttributeSet->GetMaxSpeed();
     }
 }
 
 void ATopDownPlayerCharacter::MaxSpeedChanged(const FOnAttributeChangeData& Data)
 {
 	OnMaxSpeedChanged.Broadcast(Data.NewValue, Data.OldValue);
-    GetCharacterMovement()->NavMeshProjectionInterpSpeed = Data.NewValue;
+    GetCharacterMovement()->MaxFlySpeed = Data.NewValue;
 }
 
 void ATopDownPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
